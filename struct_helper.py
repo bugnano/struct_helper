@@ -3,7 +3,7 @@
 
 # Sintassi ispirata a construct (htp://construct.wikispaces.com/)
 
-# Copyright (c) 2009, Franco Bugnano
+# Copyright (c) 2009-2011, Franco Bugnano
 # All rights reserved.
 #
 # This software is provided 'as-is', without any express or implied
@@ -27,9 +27,9 @@
 
 from __future__ import division
 
-__version__ = '1.0.2'
-__date__ = '2010-02-26'
-__copyright__ = 'Copyright (C) 2009-2010, Franco Bugnano'
+__version__ = '1.0.3'
+__date__ = '2011-07-30'
+__copyright__ = 'Copyright (C) 2009-2011, Franco Bugnano'
 
 import struct
 import copy
@@ -76,10 +76,10 @@ def StructDataFromDict(dct, encoding='cp1252'):
 	for k, v in dct.iteritems():
 		if hasattr(v, 'iteritems'):
 			setattr(struttura_dati, k, StructDataFromDict(v, encoding))
-		elif hasattr(v, '__iter__'):
-			setattr(struttura_dati, k, ArrayDataFromList(v, encoding))
 		elif hasattr(v, 'encode'):
 			setattr(struttura_dati, k, v.encode(encoding))
+		elif hasattr(v, '__iter__'):
+			setattr(struttura_dati, k, ArrayDataFromList(v, encoding))
 		else:
 			setattr(struttura_dati, k, v)
 
@@ -91,10 +91,10 @@ def ArrayDataFromList(lst, encoding='cp1252'):
 	for e in lst:
 		if hasattr(e, 'iteritems'):
 			lista_dati.append(StructDataFromDict(e, encoding))
-		elif hasattr(e, '__iter__'):
-			lista_dati.append(ArrayDataFromList(e, encoding))
 		elif hasattr(e, 'encode'):
 			lista_dati.append(e.encode(encoding))
+		elif hasattr(e, '__iter__'):
+			lista_dati.append(ArrayDataFromList(e, encoding))
 		else:
 			lista_dati.append(e)
 
