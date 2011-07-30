@@ -66,7 +66,7 @@ class ArrayData(list):
 			elif hasattr(e, 'GetDict'):
 				l.append(e.GetDict())
 			else:
-				l.append(v)
+				l.append(e)
 
 		return l
 
